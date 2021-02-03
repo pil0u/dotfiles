@@ -10,12 +10,3 @@ printf "\n >>>>> Generate SSH key...\n\n"
 echo -n "Email adress: "
 read email_addr
 mkdir -p ~/.ssh && ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519 -C $email_addr
-
-
-printf "\n >>>>> Configuring GitHub...\n\n"
-
-# Login on GitHub
-gh auth login -s 'user:email' -w
-
-# Switch to SSH
-gh config set git_protocol ssh
