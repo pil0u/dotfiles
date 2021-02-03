@@ -1,8 +1,8 @@
-echo "Creating temporary directory ~/_tmp for downloads..."
+echo "\nCreating temporary directory ~/_tmp for downloads...\n"
 mkdir ~/_tmp
 
 
-echo "Adding custom repositories..."
+echo "\nAdding custom repositories...\n"
 
 ## GitHub CLI
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
@@ -15,11 +15,11 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 ## tlp
 sudo add-apt-repository ppa:linrunner/tlp
 
-echo "Updating..."
+echo "\nUpdating...\n"
 sudo apt update
 
 
-echo "Downloading utilities..."
+echo "\nDownloading utilities...\n"
 
 ## Discord 0.0.13
 wget -O ~/_tmp/discord.deb "https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb"
@@ -31,30 +31,31 @@ wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.14
 wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
 
 
-echo "Installing utilities..."
-sudo apt install \
-  ~/_tmp/discord.deb
+echo "\nInstalling utilities...\n"
+sudo apt install -y \
   gh # GitHub CLI
   htop
   powertop
   silversearcher-ag # A better grep
   spotify-client
-  ~/_tmp/virtualbox.deb
   vlc
-  ~/_tmp/vscode.deb
   zsh
 
-echo "Installing tlp battery manager..."
+sudo apt install ~/_tmp/discord.deb
+sudo apt install ~/_tmp/virtualbox.deb
+sudo apt install ~/_tmp/vscode.deb
+  
+echo "\nInstalling tlp battery manager...\n"
 
-sudo apt install tlp tlp-rdw smartmontools
-sudo apt install acpi-call-dkms # for Thinkpad T480
+sudo apt install -y tlp tlp-rdw smartmontools
+sudo apt install -y acpi-call-dkms # for Thinkpad T480
 sudo tlp start
 
-echo "Installing Oh-My-Zsh and plugins..."
+echo "\nInstalling Oh-My-Zsh and plugins...\n"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-echo "Visit https://extensions.gnome.org/extension/307/dash-to-dock/ to customize Dock!"
+echo "\nVisit https://extensions.gnome.org/extension/307/dash-to-dock/ to customize Dock!\n"
