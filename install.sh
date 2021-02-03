@@ -1,8 +1,8 @@
-printf "\nCreating temporary directory ~/_tmp for downloads...\n"
+printf "\n >>>>> Creating temporary directory ~/_tmp for downloads...\n\n"
 mkdir ~/_tmp
 
 
-printf "\nAdding custom repositories...\n"
+printf "\n >>>>> Adding custom repositories...\n\n"
 
 ## GitHub CLI
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
@@ -15,11 +15,11 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 ## tlp
 sudo add-apt-repository -y ppa:linrunner/tlp
 
-printf "\nUpdating...\n"
+printf "\n >>>>> Updating...\n\n"
 sudo apt update
 
 
-printf "\nDownloading utilities...\n"
+printf "\n >>>>> Downloading utilities...\n\n"
 
 ## Discord 0.0.13
 wget -O ~/_tmp/discord.deb "https://dl.discordapp.net/apps/linux/0.0.13/discord-0.0.13.deb"
@@ -31,7 +31,7 @@ wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.14
 wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
 
 
-printf "\nInstalling utilities...\n"
+printf "\n >>>>> Installing utilities...\n\n"
 sudo apt install -y \
   gh \
   htop \
@@ -45,12 +45,12 @@ sudo apt install -y ~/_tmp/discord.deb
 sudo apt install -y ~/_tmp/virtualbox.deb
 sudo apt install -y ~/_tmp/vscode.deb
   
-printf "\nInstalling tlp battery manager...\n"
+printf "\n >>>>> Installing and launching tlp battery manager...\n\n"
 
 sudo apt install -y tlp tlp-rdw smartmontools
 sudo apt install -y acpi-call-dkms # for Thinkpad T480
 sudo tlp start
 
-printf "\nInstalling Oh-My-Zsh and plugins...\n"
+printf "\n >>>>> Installing Oh-My-Zsh...\n\n"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
