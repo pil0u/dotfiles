@@ -35,6 +35,7 @@ printf "\n >>>>> Installing utilities...\n\n"
 sudo apt install -y \
   gh \
   htop \
+  jq \
   powertop \
   silversearcher-ag \
   spotify-client \
