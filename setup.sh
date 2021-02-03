@@ -4,4 +4,18 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-printf "\n >>>>> Visit https://extensions.gnome.org/extension/307/dash-to-dock/ to customize Dock!\n"
+
+printf "\n >>>>> Generate SSH key...\n\n"
+
+echo -n "Email adress: "
+read email_addr
+mkdir -p ~/.ssh && ssh-keygen -t ed25519 -a 100 -f ~/.ssh/id_ed25519 -C $email_addr
+
+
+printf "\n >>>>> Configuring GitHub...\n\n"
+
+# Login on GitHub
+gh auth login -s 'user:email' -w
+
+# Switch to SSH
+gh config set git_protocol ssh
