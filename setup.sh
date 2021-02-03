@@ -6,14 +6,14 @@ printf "\nAdding custom repositories...\n"
 
 ## GitHub CLI
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+sudo apt-add-repository -y https://cli.github.com/packages
 
 ## Spotify
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 ## tlp
-sudo add-apt-repository ppa:linrunner/tlp
+sudo add-apt-repository -y ppa:linrunner/tlp
 
 printf "\nUpdating...\n"
 sudo apt update
@@ -33,10 +33,10 @@ wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb
 
 printf "\nInstalling utilities...\n"
 sudo apt install -y \
-  gh \ # GitHub CLI
+  gh \
   htop \
   powertop \
-  silversearcher-ag \ # A better grep
+  silversearcher-ag \
   spotify-client \
   vlc \
   zsh
