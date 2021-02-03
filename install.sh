@@ -54,3 +54,5 @@ sudo tlp start
 printf "\n >>>>> Installing Oh-My-Zsh...\n\n"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+
+printf "\n >>>>> Visit https://extensions.gnome.org/extension/307/dash-to-dock/ to customize Dock!\n"
