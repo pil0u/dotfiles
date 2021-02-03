@@ -36,9 +36,13 @@ sudo apt install -y \
   gh \
   htop \
   jq \
+  libavcodec-extra \
+  ncdu \
+  postgresql postgresql-contrib \
   powertop \
   silversearcher-ag \
   spotify-client \
+  tree \
   vlc \
   zsh
 
