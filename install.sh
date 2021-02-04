@@ -56,6 +56,22 @@ sudo apt install -y tlp tlp-rdw smartmontools
 sudo apt install -y acpi-call-dkms # for Thinkpad T480
 sudo tlp start
 
+printf "\n >>>>> Installing & setting up Ruby...\n\n"
+
+# Rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+echo '\n# Rbenv configuration\nexport PATH="$HOME/.rbenv/bin:$PATH"\neval "$(rbenv init -)"' >> ~/.zshrc
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
+
+# Ruby
+sudo apt install -y libssl-dev libreadline-dev
+rbenv install 2.7.2
+rbenv global 2.7.2
+
+# Gems
+gem install bundler http
+
 printf "\n >>>>> Installing Oh-My-Zsh...\n\n"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
