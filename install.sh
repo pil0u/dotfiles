@@ -72,6 +72,12 @@ rbenv global 2.7.2
 # Gems
 gem install bundler http
 
+printf "\n >>>>> Installing & setting up Node...\n\n"
+
+# Nvm
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | zsh
+nvm install node
+
 printf "\n >>>>> Installing Oh-My-Zsh...\n\n"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
