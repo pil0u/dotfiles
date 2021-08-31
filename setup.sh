@@ -30,51 +30,46 @@ mkdir ~/_tmp
 p "Adding custom repositories"
 
 sudo add-apt-repository -y ppa:andreasbutti/xournalpp-master
-sudo add-apt-repository -y ppa:dhor/myway
+# sudo add-apt-repository -y ppa:dhor/myway
 sudo add-apt-repository -y ppa:linrunner/tlp
 
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
 printf "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
-p "Updating"
-
-sudo apt update
-
 p "Installing utilities"
 
-sudo apt install -y \
-  bat \
-  build-essential \
-  gh \
-  gthumb \
-  htop \
-  imagemagick \
-  jq \
-  libavcodec-extra \
-  libvips
-  ncdu \
-  peek \
-  postgresql postgresql-contrib libpq-dev \
-  powertop \
-  silversearcher-ag \
-  spotify-client \
-  tmux \
-  tree \
-  vlc \
-  whois \
-  xournalpp \
-  zsh
+sudo apt update \
+  && sudo apt install -y bat \
+  && sudo apt install -y build-essential \
+  && sudo apt install -y gthumb \
+  && sudo apt install -y htop \
+  && sudo apt install -y imagemagick \
+  && sudo apt install -y jq \
+  && sudo apt install -y libavcodec-extra \
+  && sudo apt install -y libvips
+  && sudo apt install -y ncdu \
+  && sudo apt install -y peek \
+  && sudo apt install -y postgresql postgresql-contrib libpq-dev \
+  && sudo apt install -y powertop \
+  && sudo apt install -y silversearcher-ag \
+  && sudo apt install -y spotify-client \
+  && sudo apt install -y tmux \
+  && sudo apt install -y tree \
+  && sudo apt install -y vlc \
+  && sudo apt install -y whois \
+  && sudo apt install -y xournalpp \
+  && sudo apt install -y zsh
 
 p "Downloading & installing applications"
 
 wget -O ~/_tmp/discord.deb "https://discord.com/api/download/stable?platform=linux&format=deb"
-sudo apt install -y ~/_tmp/discord.deb
+sudo apt install ~/_tmp/discord.deb
 
 wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.14/virtualbox-6.1_6.1.14-140239~Ubuntu~eoan_amd64.deb"
-sudo apt install -y ~/_tmp/virtualbox.deb
+sudo apt install ~/_tmp/virtualbox.deb
 
 wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
-sudo apt install -y ~/_tmp/vscode.deb
+sudo apt install ~/_tmp/vscode.deb
 
 p "Installing and launching tlp battery manager"
 
