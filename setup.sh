@@ -66,7 +66,7 @@ p "Downloading & installing applications"
 wget -O ~/_tmp/discord.deb "https://discord.com/api/download/stable?platform=linux&format=deb"
 sudo gdebi --non-interactive ~/_tmp/discord.deb
 
-wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.14/virtualbox-6.1_6.1.14-140239~Ubuntu~eoan_amd64.deb"
+wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.26/virtualbox-6.1_6.1.26-145957~Ubuntu~eoan_amd64.deb"
 sudo gdebi --non-interactive ~/_tmp/virtualbox.deb
 
 wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
