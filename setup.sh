@@ -1,7 +1,13 @@
 #!/bin/bash 
 
-p () {
-  printf "\n>>> $1...\n"
+p () {              
+  text=$1
+  length=$((${#text} + 26))
+  printf "\n"
+  for i in {1..$length}; do printf "_"; done
+  printf "\n\n#   setup.sh   #   $text...   #\n"
+  for i in {1..$length}; do printf "_"; done
+  printf "\n\n"
 }
 
 p "Generating your first SSH key"
@@ -102,6 +108,7 @@ nvm install node
 # npm
 nvm install-latest-npm
 
+# oh-my-zsh
 p "Installing Oh-My-Zsh"
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
