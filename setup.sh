@@ -41,12 +41,13 @@ p "Installing utilities"
 sudo apt update \
   && sudo apt install -y bat \
   && sudo apt install -y build-essential \
+  && sudo apt install -y gdebi \
   && sudo apt install -y gthumb \
   && sudo apt install -y htop \
   && sudo apt install -y imagemagick \
   && sudo apt install -y jq \
   && sudo apt install -y libavcodec-extra \
-  && sudo apt install -y libvips
+  && sudo apt install -y libvips \
   && sudo apt install -y ncdu \
   && sudo apt install -y peek \
   && sudo apt install -y postgresql postgresql-contrib libpq-dev \
@@ -63,13 +64,13 @@ sudo apt update \
 p "Downloading & installing applications"
 
 wget -O ~/_tmp/discord.deb "https://discord.com/api/download/stable?platform=linux&format=deb"
-sudo apt install ~/_tmp/discord.deb
+sudo gdebi --non-interactive ~/_tmp/discord.deb
 
 wget -O ~/_tmp/virtualbox.deb "https://download.virtualbox.org/virtualbox/6.1.14/virtualbox-6.1_6.1.14-140239~Ubuntu~eoan_amd64.deb"
-sudo apt install ~/_tmp/virtualbox.deb
+sudo gdebi --non-interactive ~/_tmp/virtualbox.deb
 
 wget -O ~/_tmp/vscode.deb "https://update.code.visualstudio.com/latest/linux-deb-x64/stable"
-sudo apt install ~/_tmp/vscode.deb
+sudo gdebi --non-interactive ~/_tmp/vscode.deb
 
 p "Installing and launching tlp battery manager"
 
@@ -84,6 +85,7 @@ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 printf '\n# Rbenv configuration\nexport PATH="$HOME/.rbenv/bin:$PATH"\neval "$(rbenv init -)"' >> ~/.zshrc
 git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | zsh
+source ~/.zshrc
 
 # ruby
 sudo apt install -y libssl-dev libreadline-dev
@@ -94,6 +96,7 @@ p "Installing Node"
 
 # nvm
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | zsh
+source ~/.zshrc
 nvm install node
 
 # npm
