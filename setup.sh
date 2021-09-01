@@ -12,6 +12,8 @@ p () {
 
 p "Generating your first SSH key"
 
+echo -n "Name for this machine: "
+read machine_name
 echo -n "Email adress: "
 read email_addr
 echo -n "SSH key name: "
@@ -26,7 +28,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githu
 sudo apt update
 sudo apt install -y gh
 
-gh auth login -s 'user:email' -w
+gh auth login -s "user:email write:public_key" -w
+gh ssh-key add ~/.ssh/$ssh_key_name.pub --title "$machine_name"
 gh config set git_protocol ssh
 
 p "Creating temporary directory ~/_tmp for downloads"
@@ -36,7 +39,6 @@ mkdir ~/_tmp
 p "Adding custom repositories"
 
 sudo add-apt-repository -y ppa:andreasbutti/xournalpp-master
-# sudo add-apt-repository -y ppa:dhor/myway
 sudo add-apt-repository -y ppa:linrunner/tlp
 
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add -
@@ -67,7 +69,7 @@ sudo apt update \
   && sudo apt install -y xournalpp \
   && sudo apt install -y zsh
 
-p "Downloading & installing applications"
+p "Downloading & installing .deb applications"
 
 wget -O ~/_tmp/discord.deb "https://discord.com/api/download/stable?platform=linux&format=deb"
 sudo gdebi --non-interactive ~/_tmp/discord.deb
@@ -112,21 +114,32 @@ p "Installing Oh-My-Zsh"
 
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
+p "Installing ZSH plugins"
 
-# printf "\n >>>>> Installing ZSH plugins...\n\n"
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
 
-# git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
-# git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-# git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-# git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-# git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+p "Installing PowerLevel10k theme"
 
-# printf "\n >>>>> Installing PowerLevel10k associated font...\n\n"
+mkdir -p ~/.local/share/fonts
+wget -O ~/.local/share/fonts/MesloLGS_NF_Regular.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
+wget -O ~/.local/share/fonts/MesloLGS_NF_Bold.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
+wget -O ~/.local/share/fonts/MesloLGS_NF_Italic.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
+wget -O ~/.local/share/fonts/MesloLGS_NF_Bold_Italic.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
 
-# mkdir -p ~/.local/share/fonts
-# wget -O ~/.local/share/fonts/MesloLGS_NF_Regular.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf"
-# wget -O ~/.local/share/fonts/MesloLGS_NF_Bold.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf"
-# wget -O ~/.local/share/fonts/MesloLGS_NF_Italic.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf"
-# wget -O ~/.local/share/fonts/MesloLGS_NF_Bold_Italic.ttf "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# printf "WARNING! Please change font settings in GNOME:"
+p "Copying dotfiles"
+
+cp ~/dotfiles-main/.gitconfig ~/.gitconfig
+cp ~/dotfiles-main/.p10k.zsh ~/.p10k.zsh
+cp ~/dotfiles-main/.zshrc ~/.zshrc
+
+p "Flushing stuff"
+
+rm ~/dotfiles-main.zip
+rm -r ~/_tmp
+
+p "Done! Please close this window, log out, log back in to finalize ZSH install"
