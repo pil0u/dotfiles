@@ -112,6 +112,8 @@ nvm install-latest-npm
 
 p "Installing Oh-My-Zsh"
 
+p "/!\ When ZSH terminal prompts after install, type 'exit' to keep the setup going"
+
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 p "Installing ZSH plugins"
