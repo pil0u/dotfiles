@@ -1,5 +1,6 @@
 # dotfiles
-My modest setup, tested in a VM with a fresh install of Pop!\_OS 20.04
+My modest setup, tested in a VM with a fresh install of Pop!\_OS 20.04  
+_Last tested: 2021-09-01_
 
 ``` zsh
 # Direct download this GitHub repo
