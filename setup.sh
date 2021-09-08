@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 p () {              
   text=$1
@@ -151,9 +151,10 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 
 p "Copying dotfiles"
 
-cp ~/dotfiles-main/.gitconfig ~/.gitconfig
-cp ~/dotfiles-main/.p10k.zsh ~/.p10k.zsh
-cp ~/dotfiles-main/.zshrc ~/.zshrc
+cp ~/dotfiles-main/gitconfig ~/.gitconfig
+cp ~/dotfiles-main/p10k.zsh ~/.p10k.zsh
+cp ~/dotfiles-main/zshrc ~/.zshrc
+cp ~/dotfiles-main/aliases.zsh ~/${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/.aliases.zsh
 
 p "Flushing stuff"
 
