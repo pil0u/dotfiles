@@ -55,7 +55,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
@@ -73,7 +73,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -84,17 +84,23 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    debian
-    git
-    gitfast
-    # heroku
-    last-working-dir
-    zsh-autosuggestions
-    zsh-completions
-    zsh-nvm
-    zsh-syntax-highlighting
-    history-substring-search
+  # Built-ins
+  command-not-found
+  gh
+  git
+  gitfast
+  history-substring-search
+  last-working-dir
+
+  # Cloned from external sources
+  autoupdate
+  zsh-autosuggestions
+  # zsh-completions
+  zsh-nvm
+  zsh-syntax-highlighting
 )
+
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -128,6 +134,9 @@ export EDITOR="code --wait"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# zoxide configuration
+eval "$(zoxide init --cmd cd zsh)"
+
 # Rbenv configuration
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -138,8 +147,8 @@ bindkey '^H' backward-kill-word
 # Allow [ or ] whereever I want
 unsetopt nomatch
 
-# heroku autocomplete setup
-# HEROKU_AC_ZSH_SETUP_PATH=/home/pierreloic/.cache/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
 # Uncomment this line and the first line of this script to time ZSH boot time
 # zprof

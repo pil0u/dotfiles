@@ -46,9 +46,22 @@ printf "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/s
 
 p "Installing utilities"
 
+# bat       | syntax highlighted 'cat' command    | https://github.com/sharkdp/bat
+# fzf       | command-line fuzzy finder           | https://github.com/junegunn/fzf
+# gdebi     | installation tool for .deb files    | https://doc.ubuntu-fr.org/gdebi
+# gthumb    | image viewer for GNOME              | https://gitlab.gnome.org/GNOME/gthumb
+# htop      | interactive process viewer          | https://github.com/htop-dev/htop
+# ncdu      | command-line disk usage analyzer    | https://dev.yorhel.nl/ncdu
+# peek      | GIF (& MP4) video screen recorder   | https://github.com/phw/peek
+# ag        | (silversearcher-ag) better grep     | https://github.com/ggreer/the_silver_searcher
+# xournalpp | PDF editor                          | https://github.com/xournalpp/xournalpp
+# zoxide    | smarter 'cd' command based on usage | https://github.com/ajeetdsouza/zoxide
+# zsh       | improved shell                      | https://github.com/zsh-users/zsh
+
 sudo apt update \
   && sudo apt install -y bat \
   && sudo apt install -y build-essential \
+  && sudo apt install -y fzf \
   && sudo apt install -y gdebi \
   && sudo apt install -y gthumb \
   && sudo apt install -y htop \
@@ -68,6 +81,8 @@ sudo apt update \
   && sudo apt install -y whois \
   && sudo apt install -y xournalpp \
   && sudo apt install -y zsh
+
+curl -sS https://webinstall.dev/zoxide | bash
 
 p "Downloading & installing .deb applications"
 
@@ -118,7 +133,8 @@ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O 
 
 p "Installing ZSH plugins"
 
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/autoupdate
+# git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
